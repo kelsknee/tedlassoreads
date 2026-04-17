@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ted Lasso's Reading List</title>
+  <meta name="description" content="Books Ted Lasso would recommend — an uplifting reading list full of optimism, growth, and belief.">
   <style>
     body {
       font-family: Georgia, serif;
-      max-width: 600px;
+      max-width: 620px;
       margin: 60px auto;
       padding: 0 20px;
       background: #fffdf5;
@@ -33,11 +34,61 @@
     li {
       padding: 16px 0;
       border-bottom: 1px solid #e0ddd0;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border: 2px solid #bbb;
+      border-radius: 4px;
+      margin-top: 3px;
+      cursor: pointer;
+      background: white;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    input[type="checkbox"]:checked {
+      background: #c0392b;
+      border-color: #c0392b;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 8l3.5 3.5L13 4.5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .book-info {
+      flex: 1;
     }
 
     .book-title {
       font-weight: bold;
       font-size: 1.1rem;
+    }
+
+    .book-title a {
+      color: #2c2c2c;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.15s;
+    }
+
+    .book-title a:hover {
+      color: #c0392b;
+    }
+
+    li.owned .book-title a {
+      color: #aaa;
+      text-decoration-color: #ccc;
+    }
+
+    li.owned .book-author,
+    li.owned .book-reason {
+      color: #bbb;
     }
 
     .book-author {
@@ -51,45 +102,144 @@
       font-size: 0.95rem;
       font-style: italic;
     }
+
+    .owned-count {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 24px;
+    }
+
+    .owned-count span {
+      color: #c0392b;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
-  <h1> Ted Lasso's Book Recommendations</h1>
+  <h1>📚 Ted Lasso's Book Recommendations</h1>
   <p class="subtitle">"Taking on a challenge is a lot like riding a horse..."</p>
+  <p class="owned-count">You own <span id="count">0</span> of 10 books</p>
 
-  <ul>
-    <li>
-      <div class="book-title">The Obstacle Is the Way</div>
-      <div class="book-author">Ryan Holiday</div>
-      <div class="book-reason">"Turn problems into fuel. That's what winners do."</div>
+  <ul id="book-list">
+    <li id="book-0">
+      <input type="checkbox" id="cb-0">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=the+obstacle+is+the+way" target="_blank">The Obstacle Is the Way</a></div>
+        <div class="book-author">Ryan Holiday</div>
+        <div class="book-reason">"Turn problems into fuel. That's what winners do."</div>
+      </div>
     </li>
-    <li>
-      <div class="book-title">Mindset: The New Psychology of Success</div>
-      <div class="book-author">Carol S. Dweck</div>
-      <div class="book-reason">"Believe you can get better. Because you can."</div>
+    <li id="book-1">
+      <input type="checkbox" id="cb-1">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=mindset+new+psychology+of+success" target="_blank">Mindset: The New Psychology of Success</a></div>
+        <div class="book-author">Carol S. Dweck</div>
+        <div class="book-reason">"Believe you can get better. Because you can."</div>
+      </div>
     </li>
-    <li>
-      <div class="book-title">The Alchemist</div>
-      <div class="book-author">Paulo Coelho</div>
-      <div class="book-reason">"Follow your heart. Even when it takes you to England."</div>
+    <li id="book-2">
+      <input type="checkbox" id="cb-2">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=the+alchemist+coelho" target="_blank">The Alchemist</a></div>
+        <div class="book-author">Paulo Coelho</div>
+        <div class="book-reason">"Follow your heart. Even when it takes you to England."</div>
+      </div>
     </li>
-    <li>
-      <div class="book-title">How to Win Friends and Influence People</div>
-      <div class="book-author">Dale Carnegie</div>
-      <div class="book-reason">"Be curious, not judgmental."</div>
+    <li id="book-3">
+      <input type="checkbox" id="cb-3">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=how+to+win+friends+and+influence+people" target="_blank">How to Win Friends and Influence People</a></div>
+        <div class="book-author">Dale Carnegie</div>
+        <div class="book-reason">"Be curious, not judgmental."</div>
+      </div>
     </li>
-<li>
-  <div class="book-title">A Wrinkle in Time</div>
-  <div class="book-author">Madeleine L'Engle</div>
-  <div class="book-reason">"Sometimes the bravest thing you can do is believe in something you can't quite explain yet."</div>
-</li>
-    <li>
-      <div class="book-title">The Art of Possibility</div>
-      <div class="book-author">Rosamund & Benjamin Zander</div>
-      <div class="book-reason">"It's all invented anyway. Why not invent something good?"</div>
+    <li id="book-4">
+      <input type="checkbox" id="cb-4">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=the+art+of+possibility+zander" target="_blank">The Art of Possibility</a></div>
+        <div class="book-author">Rosamund & Benjamin Zander</div>
+        <div class="book-reason">"It's all invented anyway. Why not invent something good?"</div>
+      </div>
+    </li>
+    <li id="book-5">
+      <input type="checkbox" id="cb-5">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=a+wrinkle+in+time" target="_blank">A Wrinkle in Time</a></div>
+        <div class="book-author">Madeleine L'Engle</div>
+        <div class="book-reason">"Sometimes the bravest thing you can do is believe in something you can't quite explain yet."</div>
+      </div>
+    </li>
+    <li id="book-6">
+      <input type="checkbox" id="cb-6">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=leaves+of+grass+whitman" target="_blank">Leaves of Grass</a></div>
+        <div class="book-author">Walt Whitman</div>
+        <div class="book-reason">"Be curious, not judgmental."</div>
+      </div>
+    </li>
+    <li id="book-7">
+      <input type="checkbox" id="cb-7">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=wooden+lifetime+observations+jamison" target="_blank">Wooden: A Lifetime of Observations and Reflections On and Off the Court</a></div>
+        <div class="book-author">John Wooden & Steve Jamison</div>
+        <div class="book-reason">"It's not about being better than someone else. It's about being the best version of yourself."</div>
+      </div>
+    </li>
+    <li id="book-8">
+      <input type="checkbox" id="cb-8">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=the+little+prince+saint-exupery" target="_blank">The Little Prince</a></div>
+        <div class="book-author">Antoine de Saint-Exupéry</div>
+        <div class="book-reason">"It is only with the heart that one can see rightly."</div>
+      </div>
+    </li>
+    <li id="book-9">
+      <input type="checkbox" id="cb-9">
+      <div class="book-info">
+        <div class="book-title"><a href="https://www.thriftbooks.com/browse/?b.search=mans+search+for+meaning+frankl" target="_blank">Man's Search for Meaning</a></div>
+        <div class="book-author">Viktor Frankl</div>
+        <div class="book-reason">"You can't always control what happens to you — only how you respond. Sound familiar?"</div>
+      </div>
     </li>
   </ul>
+
+  <script>
+    const total = 10;
+
+    function updateCount() {
+      const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+      document.getElementById('count').textContent = checked;
+    }
+
+    function applyOwned(id, checked) {
+      const li = document.getElementById('book-' + id);
+      if (checked) {
+        li.classList.add('owned');
+      } else {
+        li.classList.remove('owned');
+      }
+    }
+
+    // Load saved state from localStorage
+    for (let i = 0; i < total; i++) {
+      const saved = localStorage.getItem('book-' + i) === 'true';
+      const cb = document.getElementById('cb-' + i);
+      cb.checked = saved;
+      applyOwned(i, saved);
+    }
+
+    updateCount();
+
+    // Save on change
+    for (let i = 0; i < total; i++) {
+      document.getElementById('cb-' + i).addEventListener('change', function () {
+        localStorage.setItem('book-' + i, this.checked);
+        applyOwned(i, this.checked);
+        updateCount();
+      });
+    }
+  </script>
 
 </body>
 </html>
